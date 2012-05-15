@@ -1,0 +1,36 @@
+<web-app id="WebApp_ID" version="2.4"
+	xmlns="http://java.sun.com/xml/ns/j2ee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+            
+  <display-name>Restful Web Application</display-name>
+  
+  <resource-ref>
+    <description>Petclinic DB</description>
+    <res-ref-name>jdbc/PetclinicDB</res-ref-name>
+    <res-type>javax.sql.DataSource</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>
+  
+  <servlet>
+      <servlet-name>jersey-servlet</servlet-name>
+      <servlet-class>
+        com.sun.jersey.spi.container.servlet.ServletContainer
+      </servlet-class>
+      <init-param>
+        <param-name>com.sun.jersey.config.property.packages</param-name>
+        <param-value>com.nrqademo.rest</param-value>
+      </init-param>
+      <init-param>
+        <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>  
+        <param-value>true</param-value>
+      </init-param>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>jersey-servlet</servlet-name>
+    <url-pattern>/services/*</url-pattern>
+  </servlet-mapping>
+  
+</web-app>
